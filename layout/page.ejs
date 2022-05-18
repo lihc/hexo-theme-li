@@ -1,0 +1,8 @@
+<% if (page.title === 'categories') { %>
+<%- include('page/categories.ejs') %>
+<% } else if (page.title === 'tags') { %>
+<%- include('page/tags.ejs') %>
+<% } else if (page.title === 'links') { %>
+<%- include('page/links.ejs') %>
+<% } %>
+<%- page.content %>

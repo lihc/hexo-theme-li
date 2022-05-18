@@ -1,0 +1,13 @@
+<br>
+<div>
+    <span>
+        © <%- theme.footer.since %>-<%= date(new Date(),'YYYY') %> <b>@</b> <a href="/"><%- config.title %></a>
+    </span>
+    <span>
+        <%- __('Powered_by','<a target="_blank" href="https://hexo.io/">Hexo</a>') %>,
+        <%- __('Theme') %> <a target="_blank" href="https://github.com/">hi v<%= theme.version %></a>
+    </span>
+    <%_ if (theme.footer.icp) { -%>
+    <span><%- theme.footer.icp %></span>
+    <%_ } -%>
+</div>

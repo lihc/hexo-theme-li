@@ -1,0 +1,7 @@
+header {
+    padding: 16px;
+    line-height: 1.5;
+    background-color: #24292f;
+    align-items: center;
+    flex-wrap: nowrap;
+}

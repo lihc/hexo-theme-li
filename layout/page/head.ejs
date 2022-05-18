@@ -1,0 +1,34 @@
+<head>
+    <meta charset="utf-8">
+
+    <%_ if (is_home()) {
+        title = false
+    } else if (is_archive()) {
+        title = __('Archives');
+        if (is_month()) {
+            title = __('Archives') + ': ' + page.year + '/' + page.month;
+        } else if (is_year()) {
+            title = __('Archives') + ': ' + page.year;
+        }
+    } else if (is_category()) {
+        title = __('Categories') + ': ' + page.category;
+    } else if (is_tag()) {
+        title = __('Tags') + ': ' + page.tag;
+    } else if (is_page()) {
+        title = page.title[0].toUpperCase() + page.title.substr(1)
+        title = __(title)
+    } else {
+        title = __(page.title);
+    } -%>
+    <title><% if (title) { %><%= title + ' - ' %><% } %><%= config.title || 'Hexo' %></title>
+
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
+    <meta name="description" content="<%= page.description || config.description || 'Hexo Theme hi' %>">
+    <meta name="keywords" content="<%= page.keywords || config.keywords || 'Hexo Theme hi' %>">
+    <meta name="author" content="<%= config.author || 'Hexo' %>">
+    <meta name="generator" content="Hexo">
+    <%- favicon_tag(theme.favicon) %>
+    <link rel="stylesheet" href="/css/main.css">
+
+</head>
+

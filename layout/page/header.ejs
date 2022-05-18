@@ -1,0 +1,7 @@
+<div>
+    <nav>
+    <%_ for (let menu in theme.menus) { -%>
+        <a href="<%- url_for(theme.menus[menu]) %>" ><%= __(menu) %></a>
+    <%_ } -%>
+    </nav>
+</div>

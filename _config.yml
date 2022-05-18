@@ -1,5 +1,3 @@
-
-
 menus:
   Home: /
   Archives: /archives
@@ -10,21 +8,10 @@ menus:
   # Changelog: /changelog
   # ......
 
-
-
 favicon: /images/favicon.svg
-
-
-
-
 
 footer:
   since: 2020
   icp: 京ICP备00000001号
-  
 
-
-version: 1.0.0
-
-
-
+version: 1.0.1

@@ -1,71 +1,68 @@
+<div>
+    <ul>
+        <%_ page.posts.forEach(post => { -%>
+        <li>
+            <article>
+                <!-- 文章标题 (post title) -->
+                <div>
+                    <h3>
+                        <a href="<%- url_for(post.path) %>"><%= post.title || 'undefined' %></a>
+                    </h3>
+                </div>
 
-<body>
-    <div>
-        <ul>
-            <%_ page.posts.forEach(post => { -%>
-            <li class="index-card">
-                <article>
-                    <!-- 文章标题 (post title) -->
-                    <div class="index-title">
-                        <h3>
-                            <a href="<%- url_for(post.path) %>"><%= post.title || 'undefined' %></a>
-                        </h3>
-                    </div>
+                <%_ if (post.excerpt || post.content) { -%>
+                <!-- 文章摘要 (post excerpt) -->
+                <div>
+                    <p><%= truncate(strip_html(post.excerpt || post.content),{length: 128}) %></p>
+                </div>
+                <%_ } -%>
 
-                    <%_ if (post.excerpt || post.content) { -%>
-                    <!-- 文章摘要 (post excerpt) -->
-                    <div>
-                        <p><%= truncate(strip_html(post.excerpt || post.content),{length: 128}) %></p>
-                    </div>
-                    <%_ } -%>
+                <!-- 文章作者 (post author) -->
+                <div>
+                    <span><%= post.author || config.author || 'Aries Mr.' %></span>
+                </div>
 
-                    <!-- 文章作者 (post author) -->
-                    <div>
-                        <span><%= post.author || config.author || 'Aries Mr.' %></span>
-                    </div>
+                <!-- 创建时间 (create time) -->
+                <div>
+                    <time datetime="<%- date(post.date,'YYYY-MM-DD LTS') %>" pubdate><%- date(post.date,'YYYY-MM-DD') %></time>
+                </div>
 
-                    <!-- 创建时间 (create time) -->
-                    <div>
-                        <time datetime="<%- date(post.date,'YYYY-MM-DD LTS') %>" pubdate><%- date(post.date,'YYYY-MM-DD') %></time>
-                    </div>
+                <%_ if (String(Object.keys(post.categories.data))) { -%>
+                <!-- 文章分类 (post category) -->
+                <div>
+                    <span>
+                    <%_ post.categories.each(function(category) { -%>
+                        <a href="<%- url_for(category.path) %>"><%= category.name %></a>
+                    <%_ }) -%>
+                    </span>
+                </div>
+                <%_ } -%>
 
-                    <%_ if (String(Object.keys(post.categories.data))) { -%>
-                    <!-- 文章分类 (post category) -->
-                    <div>
-                        <span>
-                        <%_ post.categories.each(function(category) { -%>
-                            <a href="<%- url_for(category.path) %>"><%= category.name %></a>
-                        <%_ }) -%>
-                        </span>
-                    </div>
-                    <%_ } -%>
+                <%_ if (String(Object.keys(post.tags.data))) { -%>
+                <!-- 文章标签 (post tag) -->
+                <div>
+                    <span>
+                    <%_ post.tags.each(function(tag) { -%>
+                        <a href="<%- url_for(tag.path) %>"><%= tag.name %></a>
+                    <%_ }) -%>
+                    </span>
+                </div>
+                <%_ } -%>
 
-                    <%_ if (String(Object.keys(post.tags.data))) { -%>
-                    <!-- 文章标签 (post tag) -->
-                    <div>
-                        <span>
-                        <%_ post.tags.each(function(tag) { -%>
-                            <a href="<%- url_for(tag.path) %>"><%= tag.name %></a>
-                        <%_ }) -%>
-                        </span>
-                    </div>
-                    <%_ } -%>
+                <!-- 阅读更多 (Read more) -->
+                <a href="<%- url_for(post.path) %>"><%- __('Read_more') %></a>
 
-                    <!-- 阅读更多 (Read more) -->
-                    <a href="<%- url_for(post.path) %>"><%- __('Read_more') %></a>
+            </article>
+        </li>
+        <%_ }) -%>
+    </ul>
+</div>
 
-                </article>
-            </li>
-            <%_ }) -%>
-        </ul>
-    </div>
-    <!-- 分页 -->
-    <%_ if (page.total > 1) { -%>
-    <div>
-        <nav>
-            <%- paginator({prev_text: __('Prev'),next_text: __('Next')}) %>
-        </nav>
-    </div>
-    <%_ } -%>
+<%_ if (page.total > 1) { -%>
+<div>
+    <nav>
+        <%- paginator({prev_text: __('Prev'),next_text: __('Next')}) %>
+    </nav>
+</div>
+<%_ } -%>
 
-</body>

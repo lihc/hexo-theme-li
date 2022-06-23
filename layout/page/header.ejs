@@ -1,7 +1,6 @@
-<div>
-    <nav>
+<h1 class="home-t" >Hexo-demo</h1>
+<nav class="home-nav-div">
     <%_ for (let menu in theme.menus) { -%>
-        <a id="aaa" href="<%- url_for(theme.menus[menu]) %>" ><%= __(menu) %></a>
+        <a class="home-nav-a" href="<%- url_for(theme.menus[menu]) %>"><%= __(menu) %></a>
     <%_ } -%>
-    </nav>
-</div>
+</nav>
